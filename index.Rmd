@@ -68,7 +68,7 @@ data.table::setnames(site_coords, old = c("dec_long_va"),
 today_data = readNWISdata(sites='0343233905',parameterCd=parameter_codes,
                       startDate=Sys.Date()-1,endDate=Sys.Date(),service="iv")
 
-# discharge often unavailable, annoying.
+# discharge data source has availability issues, need to fix but usually not a significant factor
 # todo: figure out a way to approximate, average over prior year values on the same day?
 
 # data.table::setnames(today_data, old = c("X_00060_00000"), new = c("river_flow_cfs"))
@@ -86,7 +86,7 @@ precip = xpathSApply(parsed_doc, path = '/html/body/app-root/app-dashboard/one-c
 
 
 
-
+# It's just a multiple linear regression basically but it works pretty well compared to gradient boosting, and is easy to implement
 # E.coli = SQUAREROOT(PRCP) + river.flow.cfs + SQUARE(DO) + SQUARE(SINDOY)
 # 
 # PRCP = daily precipitation
